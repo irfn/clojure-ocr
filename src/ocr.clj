@@ -3,4 +3,4 @@
 
 (defn foo
   "what the foo?"
-  [foo-params] 30)
+  [foo-params] (reduce + foo-params))
