@@ -2,9 +2,26 @@
   (:use clojure.test)
   (:use ocr))
 
-(deftest test-foo
-  (are [description foo-result foo-params] (= foo-result (foo foo-params))
-       "gibberish" 30 [10 10 10]
-       "licorice" 20 [5 5 10]
-       "amateurish" 13 [5 3 5]))
+(deftest test-lines
+	(are [description split-lines some-text] (= split-lines (lines some-text))
+  "splitting lines" ["  _  _     _  _  _  _  _",
+										 "| _| _||_||_ |_   ||_||_|",
+										 "||_  _|  | _||_|  ||_| _|"] ["  _  _     _  _  _  _  _\n| _| _||_||_ |_   ||_||_|\n||_  _|  | _||_|  ||_| _|"]))
 
+(deftest test-tip
+  (is (= "t" (tip "tip"))))
+
+(deftest test-tail
+  (is (= "ail" (tail "tail"))))
+
+(deftest test-column
+  (is (= '("a" "b" "c") (column ["a1234","b1234","c1234"] tip))))
+
+(deftest test-slice
+  (is (= " ||  |___ | " (slice ["  _ ",
+																"| _|",
+																"||_ "]))))
+
+(deftest test-ocr-parse
+	(are [description ocr-result some-text] (= ocr-result (ocr-parse some-text))
+  "dumb ocring" 123456789 ["  _  _     _  _  _  _  _\n| _| _||_||_ |_   ||_||_|\n||_  _|  | _||_|  ||_| _|"]))
