@@ -9,7 +9,7 @@
 (defn lines
 	"splits by newlines"
 	[text]
-	(seq (.split (first text) "\n")))
+	(seq (.split text "\n")))
 
 (defn tip
 	"tip of a string"
