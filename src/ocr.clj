@@ -1,31 +1,6 @@
-(ns ocr)		
-(require '[clojure.contrib.str-utils2 :as s])
+(ns ocr		
+	(:use string-ops))
 
-(defn only-a-tip?
-	"True if s is of length 0 or 1"
-	[line-of-text]
-	(>= 1 (.length line-of-text)))
-
-(defn lines
-	"splits by newlines"
-	[text]
-	(seq (.split (first text) "\n")))
-
-(defn digitize
-	"read 3 lines at a time"
-	[lines]
-	(1234))
-
-(defn tip
-	"tip of a string"
-	[string-value]
-	(str (first string-value)))
-
-(defn tail
-	"tip of a string"
-	[string-value]
-	(apply str (rest string-value)))
-	
 (defn column
 	"concat result of operations"
 	[lines, operation]
