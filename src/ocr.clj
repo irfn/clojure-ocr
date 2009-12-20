@@ -36,7 +36,7 @@
 	[lines]
 	(apply str (column lines tip)))
 									
-(defn slice
+(defn reduce-to-single-line
 	"wtf"
 	[lines]	
 	(loop [

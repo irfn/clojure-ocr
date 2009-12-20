@@ -17,8 +17,8 @@
 (deftest test-column
   (is (= '("a" "b" "c") (column ["a1234","b1234","c1234"] tip))))
 
-(deftest test-slice
-  (is (= " ||  |___ | " (slice ["  _ ",
+(deftest test-reduce-to-single-line
+  (is (= " ||  |___ | " (reduce-to-single-line ["  _ ",
 																"| _|",
 																"||_ "]))))
 
