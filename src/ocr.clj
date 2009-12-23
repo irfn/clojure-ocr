@@ -1,5 +1,20 @@
 (ns ocr		
 	(:use string-ops))
+(require '[clojure.contrib.str-utils2 :as s])
+
+(defn codes
+	"reduced line versions of indexes"
+	[]
+	(to-array (list
+						 " \\| ___\\|\\|" 
+						 " \\|\\|___ \\|\\|"  
+						 "_   \\|\\|"  
+						 "\\|\\|___  \\|"  
+						 " \\| ___  \\|"  
+						 " \\|  _  \\|\\|"  
+						 "___ \\|\\|"  
+						 "  \\|___ \\| "  
+						 " \\|\\|")))
 
 (defn column
 	"concat result of operations"
@@ -23,7 +38,16 @@
 				tip-aggregate
 				(recur tip-aggregate (column lines-of-text tail)))))) 
 
+(defn decode
+	[text idx]
+	(s/replace-first text (re-pattern (aget (codes) idx)) (str (- (alength (codes)) idx))))
+
 (defn ocr-parse 
 	"sample ocr"
-	[text-be-parsed] 
-	(lines text-be-parsed))
+	[text-be-parsed]
+	(areduce 
+	 (codes)
+	 idx 
+	 ret 
+	 (reduce-to-single-line (lines text-be-parsed)) 
+	 (decode ret idx)))
