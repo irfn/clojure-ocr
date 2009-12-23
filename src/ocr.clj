@@ -6,15 +6,15 @@
 	"reduced line versions of indexes"
 	[]
 	(to-array (list
-						 " \\| ___\\|\\|" 
-						 " \\|\\|___ \\|\\|"  
-						 "_   \\|\\|"  
-						 "\\|\\|___  \\|"  
-						 " \\| ___  \\|"  
-						 " \\|  _  \\|\\|"  
-						 "___ \\|\\|"  
-						 "  \\|___ \\| "  
-						 " \\|\\|")))
+						 " \\| ___\\|\\|( ){0,3}" 
+						 " \\|\\|___ \\|\\|( ){0,3}"  
+						 "_   \\|\\|( ){0,3}"  
+						 "\\|\\|___  \\|( ){0,3}"  
+						 " \\| ___  \\|( ){0,3}"  
+						 " \\|  _  \\|\\|( ){0,3}"  
+						 "___ \\|\\|( ){0,3}"  
+						 "  \\|___ \\| ( ){3}"  
+						 " \\|\\|( ){0,3}")))
 
 (defn column
 	"concat result of operations"
@@ -45,9 +45,9 @@
 (defn ocr-parse 
 	"sample ocr"
 	[text-be-parsed]
-	(areduce 
+	(s/ltrim (areduce 
 	 (codes)
 	 idx 
 	 ret 
 	 (reduce-to-single-line (lines text-be-parsed)) 
-	 (decode ret idx)))
+	 (decode ret idx))))
